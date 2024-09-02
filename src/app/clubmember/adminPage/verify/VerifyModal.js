@@ -1,11 +1,9 @@
 'use client'
 import styles from './Component.module.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Multiselect from 'multiselect-react-dropdown';
-import {motion} from "framer-motion";
-import { RevealAnimation } from '../../../components/revealAnimation/RevealAnimation';
-import { getAllUser, updateCreds,updatePermissions } from '../../../services/userService'
-import { color } from 'framer-motion';
+import { motion } from "framer-motion";
+
 export default function VerifyModal({ Users, closeModal }) {
   const [allNames, setAllNames] = useState(Object.keys(Users))
   const [selectedUsers, setSelectedUsers] = useState([])
@@ -14,36 +12,36 @@ export default function VerifyModal({ Users, closeModal }) {
 
   const handleUpdate = async () => {
 
-        if(selectedUsers.length<1){
-          alert('please select a user');
-          return;
-        }
+    if (selectedUsers.length < 1) {
+      alert('please select a user');
+      return;
+    }
 
-        selectedUsers.map((name)=>updatePermissions(Users[name],role,isVerified));
+    selectedUsers.map((name) => updatePermissions(Users[name], role, isVerified));
 
     alert('users updated');
 
     closeModal();
 
-    }
-    const handleCancel = () =>{
+  }
+  const handleCancel = () => {
 
-      setSelectedUsers([]);
-      setVerified(true);
-      setRole('student')
-      closeModal();
+    setSelectedUsers([]);
+    setVerified(true);
+    setRole('student')
+    closeModal();
 
-    }
-  
-    return (
-      
-      <motion.div transition={{duration:.4,delay:.1}} initial={{opacity:0,y:80}} animate={{opacity:1,y:0}} className={styles.main}>
-        
+  }
 
-        <p1 className={styles.title}>Verify/Roles</p1>
+  return (
 
- 
-  
+    <motion.div transition={{ duration: .4, delay: .1 }} initial={{ opacity: 0, y: 80 }} animate={{ opacity: 1, y: 0 }} className={styles.main}>
+
+
+      <p1 className={styles.title}>Verify/Roles</p1>
+
+
+
 
       <p1>Users</p1>
       <div className={styles.list}>
@@ -74,33 +72,33 @@ export default function VerifyModal({ Users, closeModal }) {
             }
           }
 
-/>
-</div>
+        />
+      </div>
 
-<p1>Verified</p1>
+      <p1>Verified</p1>
 
-<div className={styles.btnContainer}>
+      <div className={styles.btnContainer}>
 
-<button className={isVerified?'btn-primary':'btn-secondary'} onClick={()=>setVerified(true)}>Yes</button>
-<button className={!isVerified?'btn-primary':'btn-secondary'} onClick={()=>setVerified(false)}>No</button>
+        <button className={isVerified ? 'btn-primary' : 'btn-secondary'} onClick={() => setVerified(true)}>Yes</button>
+        <button className={!isVerified ? 'btn-primary' : 'btn-secondary'} onClick={() => setVerified(false)}>No</button>
 
-</div>
+      </div>
 
-<p1>Role</p1>
+      <p1>Role</p1>
 
-<div className={styles.btnContainer}>
+      <div className={styles.btnContainer}>
 
-<button className={role=='student'?'btn-primary':'btn-secondary'} onClick={()=>setRole('student')}>Student</button>
-<button className={role=='instructor'?'btn-primary':'btn-secondary'} onClick={()=>setRole('instructor')}>Instructor</button>
-<button className={role=='admin'?'btn-primary':'btn-secondary'} onClick={()=>setRole('admin')}>Admin</button>
-</div>
+        <button className={role == 'student' ? 'btn-primary' : 'btn-secondary'} onClick={() => setRole('student')}>Student</button>
+        <button className={role == 'instructor' ? 'btn-primary' : 'btn-secondary'} onClick={() => setRole('instructor')}>Instructor</button>
+        <button className={role == 'admin' ? 'btn-primary' : 'btn-secondary'} onClick={() => setRole('admin')}>Admin</button>
+      </div>
 
 
-<button onClick={()=>handleCancel()} className='btn-secondary'>Cancel</button>
-<button onClick={()=>handleUpdate()} className='btn-primary'>Confirm</button>
-</motion.div>
-      )
-    
-  
-  
+      <button onClick={() => handleCancel()} className='btn-secondary'>Cancel</button>
+      <button onClick={() => handleUpdate()} className='btn-primary'>Confirm</button>
+    </motion.div>
+  )
+
+
+
 }

@@ -1,4 +1,5 @@
 import { firebase } from '../firebase/config';
+import { randomUUID } from 'crypto';
 
 async function getUser(id) {
     const userRef = firebase.firestore().collection('users').doc(id);
@@ -30,6 +31,37 @@ async function registerUserDoc(user, role, verified) {
     await firebase.firestore().collection('users').doc('allUsers').update(
         {
             [user.displayName]:user.uid
+
+        }
+    )
+    return newUserDocData;
+}
+
+async function registerAlternateUser(name, email, role, verified) {
+    let id = "alt_" + name.toLowerCase().replace(" ", "_") + (Math.round(Math.random()*1000));
+    const userRef = firebase.firestore().collection('users').doc(id);
+    let signUpDate = new Date();
+
+    let date = signUpDate.getDate();
+    let month = signUpDate.getMonth() + 1;
+    let year = signUpDate.getFullYear();
+
+    let finalDate = month + "-" + date + "-" + year;
+    const newUserDocData = {
+        displayName: name,
+        email: email,
+        credits: 1,
+        verified: verified,
+        creditsBreakdown: [{ credits: 1, for: "Website signup", date: finalDate },],
+        role: role,
+    };
+
+    console.log(id)
+    await userRef.set(newUserDocData)
+
+    await firebase.firestore().collection('users').doc('allUsers').update(
+        {
+            [name]:id
 
         }
     )
@@ -80,4 +112,4 @@ async function updatePermissions(uid,role,verified) {
     
 }
 
-export { getUser, registerUserDoc, updateCreds,getAllUser,updatePermissions }
+export { getUser, registerUserDoc, updateCreds,getAllUser,updatePermissions, registerAlternateUser }

@@ -9,9 +9,7 @@ export default function Page() {
     useEffect(() => {
         if(leaderboard.length == 0) {
             getAllUser().then(users => {
-                console.log(users)
                 fetchCredits(users).then(lb => {
-                    console.log(lb)
                     setLeaderboard(lb)
                 })
             })
@@ -19,9 +17,7 @@ export default function Page() {
     }, [])
 
     function calcCredits(user) {
-      
         const creds = user.credits;
-        console.log(creds)
         return creds
     }
 
