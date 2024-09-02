@@ -40,7 +40,7 @@ export default function Home() {
             <div className={styles.boardContainer}>
               <div className={styles.boardMember}>
                 <img src="/aryan_headshot.jpg" alt="Board Member" className={styles.boardImage} />
-                <h2 className={styles.boardName}>Aryan Shwarma</h2>
+                <h2 className={styles.boardName}>Aryan Sharma</h2>
                 <p className={styles.boardPosition}>President</p>
                 <p className={styles.boardBio}>
                 Aryan is a senior at Centennial High School and is currently the president of CHS Pyoneers. He is also part of Centennial's AI Club, CyberPatriot, Competitive Coding Club, and Math Team. Outside of school, Aryan enjoys competing in Capture The Flag (CTF) tournaments with friends, going to overnight hackathons, and playing some combination of basketball and IO games.
