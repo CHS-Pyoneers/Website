@@ -55,7 +55,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.boardMember}>
-                <img src="/victor_headshot.png" alt="Board Member" className={styles.boardImage} />
+                <img src="/victor_headshot.jpg" alt="Board Member" className={styles.boardImage} />
                 <h2 className={styles.boardName}>Victor Liu</h2>
                 <p className={styles.boardPosition}>Vice President</p>
                 <p className={styles.boardBio}>
