@@ -8,8 +8,8 @@ import CreditsModal from './credits/CreditsModal'
 import AttendanceModal from "./attendance/AttendanceModal"
 import AnnouncementsModal from "./announcements/AnnouncementsModal"
 import AddAlternateUserModal from "./addUser/AddAlternateUserModal"
-export default function AdminPage({ user, userDoc }) {
 
+export default function AdminPage({ user, userDoc }) {
   const [allUsers, setAllUsers] = useState({})
   const [isResetting, setIsResetting] = useState(false)
   const [currentModal, setCurrentModal] = useState("none")
@@ -43,37 +43,26 @@ export default function AdminPage({ user, userDoc }) {
   }
   return (
     <div className={styles.main}>
-
       <div className={styles.Container}>
         <div className={styles.verifyIcon}></div>
         <button onClick={() => setCurrentModal('verify')} className='btn-primary'>Verify/Roles</button>
       </div>
-
-
       <div className={styles.Container}>
-
         <div className={styles.creditIcon}></div>
         <button onClick={() => setCurrentModal('credits')} className='btn-primary'>Manage Credits</button>
-
       </div>
-
-
-
       <div className={styles.Container}>
         <div className={styles.verifyIcon}></div>
         <button className='btn-primary' onClick={() => setCurrentModal("attendance")}>Manage Attendance</button>
       </div>
-
       <div className={styles.Container}>
         <div className={styles.verifyIcon}></div>
         <button className='btn-primary' onClick={() => setCurrentModal("announcements")}>Announcements</button>
       </div>
-
       <div className={styles.Container}>
         <div className={styles.verifyIcon}></div>
         <button className='btn-primary' onClick={() => setCurrentModal("newUser")}>Alternate User Registration</button>
       </div>
-
       <div className={styles.Container}>
         <div className={styles.creditIcon}></div>
         <button className='btn-primary' disabled={isResetting} onClick={resetAllCreditsHandler}>{isResetting ? 'Resetting...' : 'Reset All Credits'}</button>
@@ -82,14 +71,9 @@ export default function AdminPage({ user, userDoc }) {
 
       {currentModal == "verify" ? <VerifyModal closeModal={closeModal} Users={allUsers} /> : <></>}
       {currentModal == "credits" ? <CreditsModal closeModal={closeModal} Users={allUsers} /> : <></>}
-
-
       {currentModal == "attendance" ? <AttendanceModal closeModal={closeModal} Users={allUsers}></AttendanceModal> : ""}
       {currentModal == "announcements" ? <AnnouncementsModal closeModal={closeModal} Users={allUsers}></AnnouncementsModal> : ""}
       {currentModal == "newUser" ? <AddAlternateUserModal closeModal={closeModal} Users={allUsers}></AddAlternateUserModal> : ""}
     </div>
-
-
   )
-
 }
