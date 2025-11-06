@@ -3,6 +3,7 @@ import styles from './Component.module.css'
 import { useState } from "react";
 import Multiselect from 'multiselect-react-dropdown';
 import { motion } from "framer-motion";
+import { updatePermissions } from '../../../services/userService';
 
 export default function VerifyModal({ Users, closeModal }) {
   const [allNames, setAllNames] = useState(Object.keys(Users))
